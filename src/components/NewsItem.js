@@ -1,19 +1,26 @@
-import React, { Component } from "react";
+import React from "react";
 import newsnook from "./newsnook.png";
-export class NewsItem extends Component {
-  render() {
+const NewsItem=(props)=>{
+
     let { title, description, imageUrl, newsUrl, author, date, source } =
-      this.props;
+      props;
 
     return (
       <div className="my-3 ">
         <div className="card">
+          <div style={{
+            display:'flex',
+            justifyContent:'flex-end',
+            position:'absolute',
+            right:'0'
+          }}>
           <span
-            className="position-absolute top-0  translate-middle badge rounded-pill bg-danger"
-            style={{ left: "90%", zIndex: "1" }}
+            className="badge rounded-pill bg-danger"
           >
             {source}
           </span>
+          </div>
+      
           <img
             src={!imageUrl ? newsnook : imageUrl}
             className="card-img-top"
@@ -23,7 +30,7 @@ export class NewsItem extends Component {
             <h5 className="card-title">{title} </h5>
             <p className="card-text">{description}</p>
             <p className="card-text">
-              <strong class="text-body-secondary  text-bg-light">
+              <strong className="text-body-secondary  text-bg-light">
                 By {author ? author : "Unknown"} on{" "}
                 {new Date(date).toGMTString()}
               </strong>
@@ -41,6 +48,6 @@ export class NewsItem extends Component {
       </div>
     );
   }
-}
+
 
 export default NewsItem;
